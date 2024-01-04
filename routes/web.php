@@ -13,9 +13,18 @@ use App\Http\Controllers\UserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
+Route::controller(UserController::class)->group(function(){
+    Route::get('show', 'showUsers')->name('home');
+    Route::get('/user/{id}','singleUsers')->name('view.user');
+    Route::post('/add', 'addUser')->name('addUser');
+    // Route::get('/update',  'updateUser');
+    Route::post('/update/{id}',  'updateUser')->name('update.user');
+    
+    Route::get('/updatepage/{id}',  'updatePage')->name('update.page');
+    Route::get('/delete/{id}', 'deletUser')->name('view.delete');
+    Route::get('/delete',  'deleteAllUser');
 });
 
-Route::get('show', [UserController::class, 'showUsers']);
+Route::view('/newuser', 'adduser');
+
+

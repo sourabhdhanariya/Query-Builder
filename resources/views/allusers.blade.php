@@ -12,12 +12,16 @@
         <div class="row">
             <div class="col-6">
                 <h1>All Users List</h1>
+              <a href="/newuser" class="btn btn-success btn-success btn-sm mb-3">Add Data</a>
                 <table class="table table-bordered table-striped">
                     <tr>
                         <th>Id</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Password</th> 
+                        <th>View</th> 
+                        <th>Delete</th> 
+                        <th>Update</th> 
                     </tr>
                     @foreach ($data as $id=>$user )
                     <tr>
@@ -25,10 +29,14 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->password}}</td>
+                    <td><a href="{{route('view.user', $user->id)}}" class="btn btn-primary btn-sm">view</a></td>
+                    <td><a href="{{route('view.delete', $user->id)}}" class="btn btn-danger btn-sm">delete</a></td>
+                    <td><a href="{{route('update.page', $user->id)}}" class="btn btn-info btn-sm">update</a></td>
                 </tr>
                 @endforeach
             </table>
-            </div></div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
